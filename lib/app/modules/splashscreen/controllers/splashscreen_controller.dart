@@ -1,23 +1,15 @@
 import 'package:get/get.dart';
 
 class SplashscreenController extends GetxController {
-  //TODO: Implement SplashscreenController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    _navigateToNextScreen();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void _navigateToNextScreen() {
+    Future.delayed(Duration(seconds: 3), () {
+      Get.offNamed('/login');  // Navigasi ke halaman selanjutnya
+    });
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
