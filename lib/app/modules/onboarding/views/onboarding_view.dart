@@ -10,7 +10,7 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 219, 255, 255),
+      backgroundColor: Color.fromARGB(255, 188, 255, 255),
       body: Obx(
         () => Column(
           mainAxisAlignment: MainAxisAlignment.center,

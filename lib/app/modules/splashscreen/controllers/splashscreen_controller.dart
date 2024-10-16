@@ -8,7 +8,7 @@ class SplashscreenController extends GetxController {
   }
 
   void _navigateToNextScreen() {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       Get.offNamed('/login');  // Navigasi ke halaman selanjutnya
     });
   }

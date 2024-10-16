@@ -10,7 +10,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
   Widget build(BuildContext context) {
     final SplashscreenController controller = Get.find<SplashscreenController>();
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 219, 255, 255),
+      backgroundColor: Color.fromARGB(255, 188, 255, 255),
       body: SafeArea(
         child: Center(
           child: Container(

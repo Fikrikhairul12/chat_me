@@ -14,6 +14,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
+import '../modules/setupprofile/bindings/setupprofile_binding.dart';
+import '../modules/setupprofile/views/setupprofile_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
 
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.ONBOARDING,
       page: () => OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETUPPROFILE,
+      page: () => SetupprofileView(),
+      binding: SetupprofileBinding(),
     ),
   ];
 }

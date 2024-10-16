@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-class RegisterController extends GetxController {
-  //TODO: Implement RegisterController
+class SetupprofileController extends GetxController {
+  //TODO: Implement SetupprofileController
 
   final count = 0.obs;
   @override

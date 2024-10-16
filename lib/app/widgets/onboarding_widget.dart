@@ -18,11 +18,14 @@ Widget onboardingPage({
           style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 20),
-        Text(
-          description,
-          style: GoogleFonts.poppins(fontSize: 16),
-          textAlign: TextAlign.center,
+        SizedBox(height: 20,),
+        SizedBox(
+          width: 355,
+          child: Text(
+            description,
+            style: GoogleFonts.poppins(fontSize: 15),
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     ),
