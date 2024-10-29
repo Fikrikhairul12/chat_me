@@ -2,7 +2,6 @@ import 'package:chat_me/app/widgets/login_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/setupprofile_controller.dart';
@@ -10,7 +9,6 @@ import '../controllers/setupprofile_controller.dart';
 class SetupprofileView extends GetView<SetupprofileController> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController idUserController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,21 +17,7 @@ class SetupprofileView extends GetView<SetupprofileController> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: ListView(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-                child: Container(
-                  width: 360,
-                  height: 360,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/logo-cht.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
               Text(
                 "Setup Profile",
                 style: TextStyle(
@@ -41,6 +25,22 @@ class SetupprofileView extends GetView<SetupprofileController> {
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
+              ),
+              SizedBox(height: 20),
+              // Bind controller agar view bisa di-update sesuai dengan state controller
+              GetBuilder<SetupprofileController>(
+                builder: (controller) {
+                  return GestureDetector(
+                    onTap: () => controller.pickImage(), // Memilih gambar
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage: controller.profileImage != null
+                          ? FileImage(controller.profileImage!)
+                          : NetworkImage(
+                              'https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'),
+                    ),
+                  );
+                },
               ),
               SizedBox(height: 20),
               CustomTextFormField(
@@ -53,24 +53,13 @@ class SetupprofileView extends GetView<SetupprofileController> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
+                onPressed: () {
                   String name = nameController.text.trim();
                   String idUser = idUserController.text.trim();
 
                   if (name.isNotEmpty && idUser.isNotEmpty) {
-                    User? currentUser = FirebaseAuth.instance.currentUser;
-                    if (currentUser != null) {
-                      await FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(currentUser.uid)
-                          .set({
-                        'name': name,
-                        'id_user': '@$idUser',
-                        'email': currentUser.email,
-                      });
-
-                      Get.offAllNamed('/home'); // redirect to home page after profile setup
-                    }
+                    controller.saveProfile(name, idUser);
+                    Get.offAllNamed('/home'); // Redirect ke home setelah setup selesai
                   } else {
                     Get.snackbar(
                       'Error',

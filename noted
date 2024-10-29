@@ -3,7 +3,7 @@ lib/
 ├── app/
 │   ├── data/
 │   ├── modules/
-│   |    └── onboarding/
+│   |    └── home/
 │   |        ├── bindings/
 │   |        ├── controller/
 │   |        └── view/

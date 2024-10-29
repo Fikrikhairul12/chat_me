@@ -47,7 +47,42 @@ class LoginView extends GetView<LoginController> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.defaultDialog(
+                        title: "Forgot Password",
+                        content: Column(
+                          children: [
+                            Text(
+                              "Enter your email to receive a password reset link.",
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 10),
+                            TextField(
+                              controller: emailController,
+                              decoration: const InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ],
+                        ),
+                        textConfirm: "Send",
+                        onConfirm: () {
+                          if (emailController.text.isNotEmpty) {
+                            Get.find<LoginController>()
+                                .resetPassword(emailController.text);
+                            Get.back(); // Close dialog after sending reset link
+                          } else {
+                            Get.snackbar(
+                              'Error',
+                              'Please enter a valid email address.',
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          }
+                        },
+                        textCancel: "Cancel",
+                      );
+                    },
                     child: Text(
                       'Forgot Password?',
                       style: GoogleFonts.workSans(
@@ -128,10 +163,15 @@ class LoginView extends GetView<LoginController> {
                     width: 60,
                     height: 60,
                   ),
-                  Image.asset(
-                    'assets/icons/Google1.png',
-                    width: 60,
-                    height: 60,
+                  GestureDetector(
+                    onTap: () {
+                      Get.find<LoginController>().signInWithGoogle();
+                    },
+                    child: Image.asset(
+                      'assets/icons/Google1.png',
+                      width: 60,
+                      height: 60,
+                    ),
                   ),
                   Image.asset(
                     'assets/icons/Facebook1.png',

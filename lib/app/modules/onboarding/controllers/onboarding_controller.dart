@@ -15,7 +15,7 @@ class OnboardingController extends GetxController {
   // Fungsi untuk melompati onboarding dan langsung ke halaman login
   void skipOnboarding() {
     // Arahkan ke halaman login
-    Get.offNamed('/splashscreen'); // Ganti dengan nama route login sesuai dengan kebutuhan Anda
+    Get.offNamed('/login'); // Ganti dengan nama route login sesuai dengan kebutuhan Anda
   }
 
   // Dispose PageController untuk menghindari memory leak

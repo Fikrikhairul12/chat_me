@@ -6,6 +6,7 @@ import '../controllers/splashscreen_controller.dart';
 
 class SplashscreenView extends GetView<SplashscreenController> {
   const SplashscreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final SplashscreenController controller = Get.find<SplashscreenController>();
